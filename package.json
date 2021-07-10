@@ -1,0 +1,54 @@
+{
+  "name": "bxb-template-gen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "rimraf ./dist && tsc && rimraf dist/templates && cp -r src/templates dist",
+    "start": "ts-node src/app.ts --name=hello-world",
+    "start:dev": "nodemon",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "eslint . --exit .ts,.js --fix",
+    "format": "prettier --config .prettierrc \"src/**/*.{ts,tsx,js,jsx}\" --write"
+  },
+  "bin": {
+    "templategen": "./dist/app.js",
+    "template-gen": "./dist/app.js",
+    "txb": "./dist/app.js"
+  },
+  "keywords": [
+    "template-generator",
+    "template"
+  ],
+  "author": "Alan Bixby <alan@bxb.gg> (https://alanbix.by)",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ejs": "^3.0.7",
+    "@types/node": "^15.12.5",
+    "@types/shelljs": "^0.8.9",
+    "@types/validate-npm-package-name": "^3.0.3",
+    "@types/yargs": "^17.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "nodemon": "^2.0.9",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "ejs": "^3.1.6",
+    "enquirer": "^2.3.6",
+    "shelljs": "^0.8.4",
+    "validate-npm-package-name": "^3.0.0",
+    "yargs": "^17.0.1"
+  }
+}
