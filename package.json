@@ -1,8 +1,9 @@
 {
-  "name": "bxb-template-gen",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@alanbixby/template-generator",
+  "version": "0.1.1",
+  "description": "A personal template generator written in TypeScript",
   "main": "dist/app.js",
+  "types": "dist/app.d.ts",
   "scripts": {
     "build": "rimraf ./dist && tsc && rimraf dist/templates && cp -r src/templates dist",
     "start": "ts-node src/app.ts --name=hello-world",
@@ -12,10 +13,14 @@
     "format": "prettier --config .prettierrc \"src/**/*.{ts,tsx,js,jsx}\" --write"
   },
   "bin": {
-    "templategen": "./dist/app.js",
-    "template-gen": "./dist/app.js",
-    "txb": "./dist/app.js"
+    "templategen": "dist/app.js",
+    "template-gen": "dist/app.js",
+    "txb": "dist/app.js",
+    "txp": "dist/app.js"
   },
+  "files": [
+    "dist/"
+  ],
   "keywords": [
     "template-generator",
     "template"
@@ -47,8 +52,17 @@
     "chalk": "^3.0.0",
     "ejs": "^3.1.6",
     "enquirer": "^2.3.6",
+    "ora": "^5.4.1",
     "shelljs": "^0.8.4",
     "validate-npm-package-name": "^3.0.0",
     "yargs": "^17.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanbixby/template-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alanbixby/template-generator/issues"
+  },
+  "homepage": "https://github.com/alanbixby/template-generator#readme"
 }

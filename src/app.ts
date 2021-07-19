@@ -1,11 +1,12 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 const fs = require('fs')
 const path = require('path')
 const enquirer = require('enquirer')
 const ejs = require('ejs')
 const chalk = require('chalk')
 const shell = require('shelljs')
-const yargs = require('yargs') // TODO: Utilize yargs.usage and .option to alias flags and remove getAttribute.ts 
+const yargs = require('yargs') // TODO: Utilize yargs.usage and .option to alias flags and remove getAttribute.ts
+const ora = require('ora')
 const { argv } = yargs
 
 const { validatePackageName, cleanPackageName } = require('./util/processPackageName')
@@ -22,7 +23,16 @@ const enquirerPrompts = [
     message: 'Project name:',
     skip: () => {
       let name = getAttribute(['name', 'projectName'], argv)
-      return validatePackageName(name, false) === true // explicit since validateNPMPackageName returns string on error which is truthy
+      if (!name) {
+        return false
+      }
+      const validation = validatePackageName(name, false)
+      if (validation === true) {
+        // explicit since validateNPMPackageName returns string on error which is truthy
+        return true
+      }
+      console.log(chalk.yellow(`! '${name}' failed validation: ${name}`))
+      return !!validation
     },
     onSubmit: (name: string, value: string, prompt: any) => {
       if (prompt.skipped) {
@@ -155,11 +165,18 @@ function postProcess(options: CLIOptions) {
       shell.exec('git init', { silent: false })
     }
   }
-  if (options.gitInit) {
+  if (options.installDeps) {
     if (!shell.which('npm')) {
       console.log(chalk.red('❌ | NPM is not installed, skipping npm dependencies installation.'))
     } else {
-      shell.exec('npm install -y', { silent: false })
+      const spinner = ora('Installing NPM dependencies..').start()
+      spinner.color = 'blue'
+      try {
+        shell.exec('npm install -y', { silent: false })
+        spinner.succeed('All NPM dependencies installed.')
+      } catch (err) {
+        spinner.fail(err)
+      }
     }
   }
 }
