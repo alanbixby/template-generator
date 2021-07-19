@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 const fs = require('fs')
 const path = require('path')
 const enquirer = require('enquirer')
@@ -181,7 +180,7 @@ function postProcess(options: CLIOptions) {
   }
 }
 
-;(async () => {
+module.exports = (async () => {
   try {
     const answers = { ...(await enquirer.prompt(enquirerPrompts)), ...argv }
     if (!!getAttribute(['d', 'dry-run', 'dryrun'], argv)) {

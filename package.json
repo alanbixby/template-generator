@@ -1,22 +1,22 @@
 {
   "name": "@alanbixby/template-generator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A personal template generator written in TypeScript",
-  "main": "dist/app.js",
-  "types": "dist/app.d.ts",
+  "main": "dist/cli.js",
+  "types": "dist/cli.d.ts",
   "scripts": {
     "build": "rimraf ./dist && tsc && rimraf dist/templates && cp -r src/templates dist",
-    "start": "ts-node src/app.ts --name=hello-world",
+    "start": "ts-node src/cli.ts --name=hello-world",
     "start:dev": "nodemon",
     "lint": "eslint . --ext .ts,.js",
     "lint:fix": "eslint . --exit .ts,.js --fix",
     "format": "prettier --config .prettierrc \"src/**/*.{ts,tsx,js,jsx}\" --write"
   },
   "bin": {
-    "templategen": "dist/app.js",
-    "template-gen": "dist/app.js",
-    "txb": "dist/app.js",
-    "txp": "dist/app.js"
+    "templategen": "dist/cli.js",
+    "template-gen": "dist/cli.js",
+    "txb": "dist/cli.js",
+    "txp": "dist/cli.js"
   },
   "files": [
     "dist/"
