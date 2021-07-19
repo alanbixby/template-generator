@@ -169,11 +169,11 @@ function postProcess(options: CLIOptions) {
     if (!shell.which('npm')) {
       console.log(chalk.red('❌ | NPM is not installed, skipping npm dependencies installation.'))
     } else {
-      const spinner = ora('Installing NPM dependencies..').start()
+      const spinner = ora(chalk.bold('Installing NPM dependencies..')).start()
       spinner.color = 'blue'
       try {
         shell.exec('npm install -y', { silent: false })
-        spinner.succeed('All NPM dependencies installed.')
+        spinner.succeed(chalk.bold('All NPM dependencies installed.'))
       } catch (err) {
         spinner.fail(err)
       }
