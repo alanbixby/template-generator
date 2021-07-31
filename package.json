@@ -1,6 +1,6 @@
 {
   "name": "@alanbixby/template-generator",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A personal template generator written in TypeScript",
   "main": "dist/cli.js",
   "types": "dist/cli.d.ts",

@@ -147,6 +147,11 @@ function buildDirectory(templatePath: string, projectName: string) {
       buildDirectory(path.join(templatePath, file), path.join(projectName, file))
     }
   }
+
+  // Rename 'gitignore' to '.gitignore' due to NPM publish restrictions
+  if (fs.existsSync(path.join(CURRENT_DIR, projectName, 'gitignore'))) {
+    fs.renameSync(path.join(CURRENT_DIR, projectName, 'gitignore'), path.join(CURRENT_DIR, projectName, '.gitignore'))
+  }
 }
 
 interface CLIOptions {
