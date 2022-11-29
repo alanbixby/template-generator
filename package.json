@@ -5,7 +5,7 @@
   "main": "dist/cli.js",
   "types": "dist/cli.d.ts",
   "scripts": {
-    "build": "rimraf ./dist && tsc && rimraf dist/templates && cp -r src/templates dist",
+    "build": "rimraf ./dist && tsc-silent -p tsconfig.json --suppress 2307,1378@/src/templates -- && rimraf dist/templates && cp -r src/templates dist",
     "start": "ts-node src/cli.ts --name=hello-world",
     "start:dev": "nodemon",
     "lint": "eslint . --ext .ts,.js",
@@ -49,6 +49,7 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@alanbixby/template-generator": "^0.1.4",
     "chalk": "^3.0.0",
     "ejs": "^3.1.6",
     "enquirer": "^2.3.6",

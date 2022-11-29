@@ -104,8 +104,8 @@ async function buildProject(projectPath: string) {
         name: 'confirmOverwrite',
         type: 'confirm',
         message: chalk.yellow('This directory already exists, are you sure you want to overwrite it?'),
-        initial: !!getAttribute(['f', 'force'], argv),
-        skip: !!getAttribute(['f', 'force'], argv),
+        initial: !!getAttribute(['f', 'force', 'o', 'overwrite'], argv),
+        skip: !!getAttribute(['f', 'force', 'o', 'overwrite'], argv),
         onSubmit: (name: string, value: string, prompt: any) => {
           if (prompt.skipped && prompt.initial) {
             console.log(chalk.magenta('>'), 'Automatically overwriting the target directory.')
